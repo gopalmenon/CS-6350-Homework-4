@@ -16,15 +16,56 @@
   product made out of these constitutes a distinct hypothesis. How
   large would the hypothesis space be? Brief explain your answer.
     
+Since we have $N$ available parts, the product can be made with any of the following number of parts, which would be the hypotheses space $H$.
+$$
+H = \{1, 2, 3,\ldots, N-1, N \}
+$$
+
+This means that the size of the hypotheses space $H$ is 
+
+\begin{equation*}
+\begin{aligned}
+\left | H \right | &= 1 + 2 + 3 + \ldots + N-1 + N\\
+&= \frac{N (N+1)}{2}
+\end{aligned}
+\end{equation*}
+
 \item[(b)] [5 points] Suppose that an experienced worker follows both
   rules when making a product. How large is the hypothesis space now?
   Explain.
+
+Since each of the $N$ parts can be used as is or broken into two, we have a total of $3N$  possible parts. The reason is that we have $N$ original parts and if each part is broken into two, we have $2N$ broken parts. The total sum of the number of parts is $N + 2N$ or $3N$. The product can be made out of unbroken parts or with broken parts or a combination of both. If broken parts are used, then both halves of the broken part are to be used. This means that the total number of parts from which the product can be made, is reduced to $2N$. Based on an argument similar to the one given above for the previous answer, the size of the hypothesis space $H$ will be
+
+$$
+\left | H \right | = \frac{2N(2N+1)}{2}
+$$
 
 \item[(c)] [10 points] An experienced worker decides to train the
   naive robot to discern the makeup of a product by showing you the
   product samples he has assembled. There are 6 available parts. If
   the robot would like to learn any product at $0.01$ error with
   probability $99\%$, how many examples would the robot have to see?
+  
+In order to learn a hypothesis with $n$ dimensional features, with an error less than $\epsilon$, with a probability of $1-\delta$, we would need $m$ training samples, where $m$ is given by
+$$  
+m > \frac{1}{\epsilon} \left ( log_e(\left | H \right |) + log_e \left ( \frac{1}{\delta} \right ) \right )
+$$
+
+In the case given above, since there are $2N$ different parts that can be chosen to make up the product, the input space can be thought of as having $2N$ dimensions since each dimension will be a binary variable which signifies whether a part has been used or not. So $\left | H \right | =\frac{2N(2N+1)}{2} = \frac{2\times 6(2 \times 6 +1)}{2} =\frac{12\times 13}{2} = 78$, $\epsilon=0.01$ and $\delta=1.00- 0.99=0.01$.
+
+Substituting these values into the above in-equation, we get
+
+\begin{equation*}
+\begin{aligned}
+m &> \frac{1}{0.01} \left ( log_e(78) + log_e \left ( \frac{1}{0.01} \right ) \right )\\
+&> 100 \times \left ( log_e(78) + log_e (100) \right )\\
+&> 100 \times \left ( 4.36 + 4.60 \right )\\
+&>896.19
+\end{aligned}
+\end{equation*}
+
+This means that the robot will need to look at at least $897$ examples to learn a hyphothesis.
+
 \end{itemize}
 
 
