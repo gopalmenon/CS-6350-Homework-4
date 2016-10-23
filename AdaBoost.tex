@@ -1,0 +1,57 @@
+\section{AdaBoost }
+
+[15 points] You are given the following examples in the Table \ref{tab:AdaBoost}. You need to learning a model that minimize the error on this small dataset. 
+\begin{table}[H]
+  \centering
+  \caption{training set}
+  \label{tab:AdaBoost}
+  \begin{tabular}{|c|c|}
+    \hline
+    ${\bf x} = [x_1,x_2]$  & y  \\ \hline
+    [1,1]  & -1 \\ \hline
+    [1,-1]  & +1 \\ \hline
+    [-1,-1] & -1 \\ \hline
+    [-1,-1] & -1 \\ \hline
+  \end{tabular}
+\end{table}
+Assuming you are also given the following 4 weak hypothesis classifiers
+\begin{align*}
+  h_a(\bf{x})&= \sgn(x_1) \\
+  h_b(\bf{x}) &= \sgn(x_1-2) \\
+  h_c(\bf{x}) &= -\sgn(x_1) \\
+  h_d(\bf{x}) &= -\sgn(x_2) \\
+\end{align*}
+Treat them as your weak classifiers( rule of thumb) for the following
+question.
+
+Step through the full AdaBoost algorithm (Lecture Boosting slide P34)
+for 4 rounds by choosing $h_t$ from the above 4 weak classifiers.
+Remember that you need to {\bf choose a hypothesis } from $h_a, h_b,
+h_c, h_d$ whose weighted classification error is {\bf better than
+  chance}. However, in this question, for easier grading, we have
+chosen $h_a$ as the first hypothesis and show the values of
+$\epsilon_1$, $\alpha_1$, $Z_1$, $D_1$ in Table \ref{tab:Ada1}. 
+
+For you answer, please follow the table template, report the
+hypothesis you choose and all the $\epsilon_t$, $\alpha_t$, $Z_t$,
+$D_t$, and the final hypothesis $H_{final}(x)$ for {\em four
+  subsequent rounds}.
+\begin{table}[H]
+  \centering
+  \caption{Choose $h_a({\bf x}) = \sgn(x_1), \epsilon_1 = 1/4, \alpha_1 = \frac{\ln3}{2}, Z_1 = \frac{\sqrt{2}}{3}$}
+  \label{tab:Ada1}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    ${\bf x} = [x_1,x_2]$ & $y_i$ & $D_1$ & $D_{1}(i)y_{i}h_t({\bf x_i})$ & $D_2$ \\ \hline
+    [1,1]                 & -1    & 1/4   & -1/4                          &       \\ \hline
+    [1,-1]                & +1    & 1/4   & 1/4                           &       \\ \hline
+    [-1,-1]               & -1    & 1/4   & 1/4                           &       \\ \hline
+    [-1,-1]               & -1    & 1/4   & 1/4                           &       \\ \hline
+  \end{tabular}
+\end{table}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "hw"
+%%% End:

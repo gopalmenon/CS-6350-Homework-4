@@ -1,0 +1,58 @@
+\section{PAC learning}
+\label{sec:pac-learning}
+\begin{enumerate}
+
+\item ~[20 points total] A factory assembles a product that consist of
+  different parts. Suppose a robot was invented to recognize whether a
+  product contains all the right parts. The rules of making products
+  are very simple: 1) you are free to combine any of the parts as they
+  are 2) you may also cut any of the parts into two distinct pieces
+  before using them. You wonder how much effort a robot would need to
+  figure out the what parts are used in the product.
+
+\begin{itemize}
+\item[(a)] [5 points] Suppose that a naive robot has to recognize
+  products made using only rule 1. Given $N$ available parts and each
+  product made out of these constitutes a distinct hypothesis. How
+  large would the hypothesis space be? Brief explain your answer.
+    
+\item[(b)] [5 points] Suppose that an experienced worker follows both
+  rules when making a product. How large is the hypothesis space now?
+  Explain.
+
+\item[(c)] [10 points] An experienced worker decides to train the
+  naive robot to discern the makeup of a product by showing you the
+  product samples he has assembled. There are 6 available parts. If
+  the robot would like to learn any product at $0.01$ error with
+  probability $99\%$, how many examples would the robot have to see?
+\end{itemize}
+
+
+\item ~[20 points, from Tom Mitchell's book] We have learned an
+  expression for the number of training examples sufficient to ensure
+  that every hypothesis will have true error no worse than $\epsilon$
+  plus its observed training error $error_S(h)$. In particular, we
+  used Hoeffding bounds to derive
+\[
+	m \geq  \frac{1}{2 \epsilon^2}(\ln(|H|) + \ln(1/\delta)).
+\]
+Derive an alternative expression for the number of training examples
+sufficient to ensure that every hypothesis will have true error no
+worse than $(1+\epsilon)error_S(h)$, where $0 \leq \epsilon \leq 1$. You can use general Chernoff bounds
+to derive such a result.
+
+{\bf Chernoff bounds:} Suppose $X_1, \cdots, X_m$ are the outcomes of $m$ independent coin flips (Bernoulli trials), where the probability of heads on any single trail is $Pr[X_i = 1] = p$ and the probability of tails is $Pr[X_i = 0] = 1 - p$. Define $S = X_1 + X_2 + \cdots + X_m$ to be the sum of these $m$ trials. The expected value of $S/m$ is $E[S/m] = p$. The Chernoff bounds govern the probabilty that $S/m$ will differ from $p$ by some factor $0 \leq \gamma \leq 1$.
+
+\begin{equation}
+    \begin{array}{rcl}
+	Pr[S/m > (1 + \gamma) p ] \leq e^{{-mp\gamma^2}/3}\\
+	Pr[S/m < (1 - \gamma) p ] \leq e^{{-mp\gamma^2}/2}
+	\end{array}
+\end{equation}
+
+\end{enumerate}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "hw"
+%%% End:
