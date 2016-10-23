@@ -91,6 +91,34 @@ to derive such a result.
 	\end{array}
 \end{equation}
 
+The empirical error is defined as $err_S(h) = \frac{\left | \left \{ f(x) \neq h(x) \right \} \right |}{m}$ and the generalization error is defined as $err_D(h) =  Pr \left [ f(x) \neq h(x) \right ]$, where $S$ is the training set, $h$ is the hypothesis that is learnt, $f(x)$ is the unknown true function, $m$ is the number of training samples and $D$ is the distribution from which samples are drawn.
+
+Using the Chernoff bounds, we can find the expression for the probability that the expected error (or in other words the generalization error) for a single hypothesis will differ from the empirical error by some factor based on $\epsilon$, where $0 \leq \epsilon \leq 1$. This expression will be
+
+\begin{equation*}
+\begin{aligned}
+Pr \left[ err_D (h) > (1+\epsilon) err_S(h) \right ] \leq e^{\frac{-mp\epsilon^2}{3}}
+\end{aligned}
+\end{equation*}
+
+For the case where the hypothesis $h$ is chosen from the set of all possible hypotheses $H$, the learning algorithm will choose the hypothesis that has minimum empirical error. Using the union bound, we can say that the probability that there exists hypothesis $h \in H$, such that the expected error will differ from the empirical error, will be
+\begin{equation*}
+\begin{aligned}
+Pr \left[\exists h; err_D (h) > (1+\epsilon) err_S(h) \right ] \leq \left | H \right | e^{\frac{-mp\epsilon^2}{3}}
+\end{aligned}
+\end{equation*}
+
+In order to minimize the generalization error, we need the above probability to be less than $\delta$. This gives us
+
+\begin{equation*}
+\begin{aligned}
+\left | H \right | e^{\frac{-mp\epsilon^2}{3}} &\leq \delta\\
+log_e \left ( \left | H \right | \right ) - \frac{mp\epsilon^2}{3} log_e e &\leq log_e \left (\delta \right)\\
+\frac{mp\epsilon^2}{3} &\geq log_e \left ( \left | H \right | \right ) - log_e \left (\delta \right)\\
+m &\geq \frac{3}{p\epsilon^2} \left ( log_e \left ( \left | H \right | \right ) + log_e \left (\frac{1}{\delta} \right) \right )
+\end{aligned}
+\end{equation*}
+
 \end{enumerate}
 
 %%% Local Variables:
