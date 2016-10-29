@@ -33,6 +33,29 @@ This means that the VC dimension at most $\log_2|\mathcal{C}|$
     |{x : h(x) = 1} | = k \}$. That is , the set of all functions that
     assign the value 1 to exactly $k$ elements of $\mathcal{X}$.
 
+$d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{H}$, is defined as the largest $N$ for which $m_{\mathcal{H}}(N) = 2^N$. The definition of $m_{\mathcal{H}} $ is similar to the one given above.\\
+
+For the case of maximum number of dichotomies, we can consider that each hypothesis in $\mathcal{H}$ creates a distinct dichotomy. To find $d_{VC}(\mathcal{H})$ corresponding to this case, since we know that at exactly $k$ elements are assigned a label $1$ and the remaining elements are assigned label $0$, for the case of the VC dimension, the maximum number of dichotomies must be a power of $2$. Consider a subset of elements of $\mathcal{X}$, where $k$ elements are assigned label $1$ and $y$ elements are assigned label $0$.
+
+\begin{equation*}
+\begin{aligned}
+\left | \mathcal{H} \right | &= 2^{k + y}\\
+\log_2 \left | \mathcal{H} \right | &= k+y\\
+y &= \log_2 \left | \mathcal{H} \right | - k\\
+\end{aligned}
+\end{equation*}
+
+Since $d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{H}$, is defined as the largest $N$ for which $m_{\mathcal{H}}(N) = 2^N$
+
+\begin{equation*}
+\begin{aligned}
+2^{d_{VC}(\mathcal{H})} &= 2^{k+y}\\
+&= 2^{k+\log_2 \left | \mathcal{H} \right | - k}\\
+&= 2^{log_2 \left | \mathcal{H} \right |}\\
+\implies d_{VC}(\mathcal{H}) &= \log_2 \left | \mathcal{H} \right |
+\end{aligned}
+\end{equation*}
+
   \item $\mathcal{H}_{\leq k}^{\mathcal{X}} = \{h \in
     \{0,1\}^\mathcal{X} : |{x : h(x) = 1} | \leq k \quad or \quad |{x
       : h(x) = 0} | \leq k\}$. That is , the set of all functions that
