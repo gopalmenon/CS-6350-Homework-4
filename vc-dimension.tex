@@ -61,6 +61,22 @@ Since $d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{
       : h(x) = 0} | \leq k\}$. That is , the set of all functions that
     assign the value 1 or 0 to at most $k$ elements of $\mathcal{X}$.
 
+For the case of a set of $d_{VC}(\mathcal{H})$ elements in $\mathcal{X}$, the label will be $1$ for between $0$ and $k$ elements. If this happens, there will be correspondingly between $k$ and $0$ elements with label $0$. So the total number of dichotomies will be
+$$
+\sum_{i=0}^k {N \choose i}
+$$
+where N is the number of elements chosen from $\mathcal{X}$.
+
+Let $d_{VC}(\mathcal{H}) = y$. This means that
+
+\begin{equation*}
+\begin{aligned}
+2^y &= \sum_{i=0}^k {N \choose i}\\
+\implies d_{VC}(\mathcal{H}) &= y\\
+ &= \log_2 \sum_{i=0}^k {N \choose i}
+\end{aligned}
+\end{equation*}
+
   \end{enumerate}
 
 \item ~[10 points] Suppose we have an instance space consisting of
