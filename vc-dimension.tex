@@ -86,6 +86,21 @@ Let $d_{VC}(\mathcal{H}) = y$. This means that
   either $a \leq x \leq b$ or $c \leq x \leq d$. Determine the VC
   dimension of $\mathcal{H}$?
 
+Since the two intervals are disjoint, there are three regions in the instance space that are defined by the intervals:
+
+\begin{enumerate}
+\item before the first interval
+\item inside the first interval
+\item between the first and second intervals
+\item inside the second interval
+\item after the second interval
+\end{enumerate}
+
+So the maximum number of points that can possibly be split into all possible dichotomies is $5$. If the $5$ points can be split into all possible dichotomies then the dichotomy $\{1,0,1,0,1\}$ should be one of them (I am representing a positive label by $1$ and a negative label by $0$). However, this dichotomy is not possible since there are only two intervals where the label can be $1$ and the label $\{1,0,1,0,1\}$ requires three such intervals.
+
+Consider $4$ points. These $4$ points can be split into the dichotomies $\{\{0,0,0,0\},\{0,0,0,1\},\\\{0,0,1,0\},\{0,0,1,1\},\{0,1,0,0\},\{0,1,0,1\},\{0,1,1,0\},\{0,1,1,1\},\{1,0,0,0\},\{1,0,0,1\},\\\{1,0,1,0\},\{1,0,1,1\},\{1,1,0,0\},\{1,1,0,1\},\{1,1,1,0\},\{1,1,1,1\}\}$. These are all possible dichotomies that can be generated used $4$ points and the hypothesis space $\mathcal{H}$.\\ 
+
+So $d_{VC}(\mathcal{H}) = 4$.
 
 \item ~[15 points] We have a learning problem where each example is a
   point in $\Re^2$. The concept class $H$ is defined as follows: A
