@@ -106,7 +106,7 @@ So $d_{VC}(\mathcal{H}) = 4$.
   point in $\Re^2$. The concept class $H$ is defined as follows: A
   function $h \in H$ is specified by two parameters $a$ and $b$. An
   example ${\bf x} = \{x_1, x_2\}$ in $\Re^2$ is labeled as $+$ if and
-  only if $x_1 + x_2 \geq a$ and $x_1 - x_2 \leq b$ and is labeled $-$
+  only if $x_1 + x_2 \geq a$ and $x_1 - x_2 \leq b$ and is labeled $-1$
   otherwise.
 
   For example, if we set $a = 0, b = 0$, the grey region in figure
@@ -131,10 +131,17 @@ So $d_{VC}(\mathcal{H}) = 4$.
 
   What is the VC dimension of this class?
 
+The concept class contains individual hypothesis' that consist on two arms that can intersect anywhere on $\Re^2$ and can cover an infinite arc from any angle from $0\si{\degree}$ to $360\si{\degree}$. This means that the concept class can split any $N$ points into all possible ($2^N$) dichotomies.\\
+
+So $d_{VC}(H) = \infty$.
 
 \item ~[{\bf For 6350 Students,} 15 points] Let two hypothesis classes
   $H_1$ and $H_2$ satisfy $H_1 \subseteq H_2$. Prove: $VC(H_1) \leq
   VC(H_2)$.
+
+If $H_1 \subseteq H_2$, then any point marked with label $+1$ by a hypothesis in $H_1$ will be marked as $+1$ by a hypothesis in $H_2$ and any point marked with label $-1$ by a hypothesis in $H_1$ will be marked as $-1$ by a hypothesis in $H_2$.
+
+Consider any set of points $N$ that are labelled by $H_2$. The same set of points may not result in the same number of dichotomies by $H_1$ as those produced by $H_2$. The reason is that $H_2$ may have hypotheses that are not present in $H_1$. This means that $H_2$ can be more expressive than $H_1$. This means that $d_{VC}(H_1) \leq d_{VC}(H_2)$.
 
 \end{enumerate}
 %%% Local Variables:

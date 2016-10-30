@@ -9,9 +9,9 @@
     \hline
     ${\bf x} = [x_1,x_2]$  & y  \\ \hline
     [1,1]  & -1 \\ \hline
-    [1,-1]  & +1 \\ \hline
+    [1,-1]  & 1 \\ \hline
     [-1,-1] & -1 \\ \hline
-    [-1,-1] & -1 \\ \hline
+    [-1,1] & -1 \\ \hline
   \end{tabular}
 \end{table}
 Assuming you are also given the following 4 weak hypothesis classifiers
@@ -38,15 +38,15 @@ $D_t$, and the final hypothesis $H_{final}(x)$ for {\em four
   subsequent rounds}.
 \begin{table}[H]
   \centering
-  \caption{Choose $h_a({\bf x}) = \sgn(x_1), \epsilon_1 = 1/4, \alpha_1 = \frac{\ln3}{2}, Z_1 = \frac{\sqrt{2}}{3}$}
+  \caption{Choose $h_a({\bf x}) = \sgn(x_1), \epsilon_1 = 1/4, \alpha_1 = \frac{\ln3}{2}, Z_1 = \frac{\sqrt{3}}{2}$}
   \label{tab:Ada1}
-  \begin{tabular}{|c|c|c|c|c|}
+  \begin{tabular}{|c|c|c|c|c|c|}
     \hline
-    ${\bf x} = [x_1,x_2]$ & $y_i$ & $D_1$ & $D_{1}(i)y_{i}h_t({\bf x_i})$ & $D_2$ \\ \hline
-    [1,1]                 & -1    & 1/4   & -1/4                          &       \\ \hline
-    [1,-1]                & +1    & 1/4   & 1/4                           &       \\ \hline
-    [-1,-1]               & -1    & 1/4   & 1/4                           &       \\ \hline
-    [-1,-1]               & -1    & 1/4   & 1/4                           &       \\ \hline
+    ${\bf x} = [x_1,x_2]$ & $y_i$ & $h_a(x)$ & $D_1$ & $D_{1}(i)y_{i}h_t({\bf x_i})$ & $D_2$ \\ \hline
+    [1,1]          &     -1  & 1    & 1/4   & -1/4                          &       \\ \hline
+    [1,-1]         &    1   & 1    & 1/4   & 1/4                           &       \\ \hline
+    [-1,-1]        &     -1  & -1    & 1/4   & 1/4                           &       \\ \hline
+    [-1,1]         &     -1 & -1    & 1/4   & 1/4                           &       \\ \hline
   \end{tabular}
 \end{table}
 
