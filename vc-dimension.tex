@@ -30,7 +30,7 @@ This means that the VC dimension at most $\log_2|\mathcal{C}|$
   \begin{enumerate}
   \item
     $\mathcal{H}_{=k}^{\mathcal{X}} = \{h \in \{0,1\}^\mathcal{X} :
-    |{x : h(x) = 1} | = k \}$. That is , the set of all functions that
+    |\{x : h(x) = 1\} | = k \}$. That is , the set of all functions that
     assign the value 1 to exactly $k$ elements of $\mathcal{X}$.
 
 $d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{H}$, is defined as the largest $N$ for which $m_{\mathcal{H}}(N) = 2^N$. The definition of $m_{\mathcal{H}} $ is similar to the one given above.\\
@@ -56,9 +56,9 @@ Since $d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{
 \end{aligned}
 \end{equation*}
 
-  \item $\mathcal{H}_{\leq k}^{\mathcal{X}} = \{h \in
-    \{0,1\}^\mathcal{X} : |{x : h(x) = 1} | \leq k \quad or \quad |{x
-      : h(x) = 0} | \leq k\}$. That is , the set of all functions that
+  \item  $\mathcal{H}_{\leq k}^{\mathcal{X}} = \{h \in
+    \{0,1\}^\mathcal{X} : |\{x : h(x) = 1\} | \leq k \quad or \quad |\{x
+      : h(x) = 0\} | \leq k\}$. That is , the set of all functions that
     assign the value 1 or 0 to at most $k$ elements of $\mathcal{X}$.
 
 For the case of a set of $d_{VC}(\mathcal{H})$ elements in $\mathcal{X}$, the label will be $1$ for between $0$ and $k$ elements. If this happens, there will be correspondingly between $k$ and $0$ elements with label $0$. So the total number of dichotomies will be
