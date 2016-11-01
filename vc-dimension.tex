@@ -15,9 +15,9 @@ This means that $d_{VC}(\mathcal{C})$ is the largest $N$ such that
 
 \begin{equation*}
 \begin{aligned}
-m_\mathcal{C}(N)=2^N &= \left | \mathcal{C} \right| \\
-N \log_2 2 &= \log_2 \left | \mathcal{C} \right| \\
-N &= \log_2|\mathcal{C}|
+m_\mathcal{C}(N)=2^N &\leq \left | \mathcal{C} \right| \\
+N \log_2 2 &\leq \log_2 \left | \mathcal{C} \right| \\
+N &\leq \log_2|\mathcal{C}|
 \end{aligned}
 \end{equation*}
 
@@ -86,7 +86,7 @@ Let $d_{VC}(\mathcal{H}) = y$. This means that
   either $a \leq x \leq b$ or $c \leq x \leq d$. Determine the VC
   dimension of $\mathcal{H}$?
 
-Since the two intervals are disjoint, there are three regions in the instance space that are defined by the intervals:
+Since the two intervals are disjoint, there are five regions in the instance space that are defined by the intervals:
 
 \begin{enumerate}
 \item before the first interval
@@ -98,7 +98,7 @@ Since the two intervals are disjoint, there are three regions in the instance sp
 
 So the maximum number of points that can possibly be split into all possible dichotomies is $5$. If the $5$ points can be split into all possible dichotomies then the dichotomy $\{1,0,1,0,1\}$ should be one of them (I am representing a positive label by $1$ and a negative label by $0$). However, this dichotomy is not possible since there are only two intervals where the label can be $1$ and the label $\{1,0,1,0,1\}$ requires three such intervals.
 
-Consider $4$ points. These $4$ points can be split into the dichotomies $\{\{0,0,0,0\},\{0,0,0,1\},\\\{0,0,1,0\},\{0,0,1,1\},\{0,1,0,0\},\{0,1,0,1\},\{0,1,1,0\},\{0,1,1,1\},\{1,0,0,0\},\{1,0,0,1\},\\\{1,0,1,0\},\{1,0,1,1\},\{1,1,0,0\},\{1,1,0,1\},\{1,1,1,0\},\{1,1,1,1\}\}$. These are all possible dichotomies that can be generated used $4$ points and the hypothesis space $\mathcal{H}$.\\ 
+Consider $4$ points. These $4$ points can be split into the dichotomies $\{\{0,0,0,0\},\{0,0,0,1\},\\\{0,0,1,0\},\{0,0,1,1\},\{0,1,0,0\},\{0,1,0,1\},\{0,1,1,0\},\{0,1,1,1\},\{1,0,0,0\},\{1,0,0,1\},\\\{1,0,1,0\},\{1,0,1,1\},\{1,1,0,0\},\{1,1,0,1\},\{1,1,1,0\},\{1,1,1,1\}\}$. These are all possible dichotomies that can be generated using $4$ points and the hypothesis space $\mathcal{H}$.\\ 
 
 So $d_{VC}(\mathcal{H}) = 4$.
 
@@ -131,17 +131,15 @@ So $d_{VC}(\mathcal{H}) = 4$.
 
   What is the VC dimension of this class?
 
-The concept class contains individual hypothesis' that consist on two arms that can intersect anywhere on $\Re^2$ and can cover an infinite arc from any angle from $0\si{\degree}$ to $360\si{\degree}$. This means that the concept class can split any $N$ points into all possible ($2^N$) dichotomies.\\
+The concept class contains individual hypothesis' that consist on two arms that can intersect anywhere on $\Re^2$ and can cover an infinite arc from any angle from $0\si{\degree}$ to $360\si{\degree}$. Consider the case of three collinear points which have labels $\{+1, -1, +1\}$. This classification clearly cannot be satisfied by any of the hypothesis in the hypothesis class. Any two points ($2^1$ points) with any distribution of $+1$ and $-1$ can be covered.\\
 
-So $d_{VC}(H) = \infty$.
+So $d_{VC}(H) = 1$.
 
 \item ~[{\bf For 6350 Students,} 15 points] Let two hypothesis classes
   $H_1$ and $H_2$ satisfy $H_1 \subseteq H_2$. Prove: $VC(H_1) \leq
   VC(H_2)$.
 
-If $H_1 \subseteq H_2$, then any point marked with label $+1$ by a hypothesis in $H_1$ will be marked as $+1$ by a hypothesis in $H_2$ and any point marked with label $-1$ by a hypothesis in $H_1$ will be marked as $-1$ by a hypothesis in $H_2$.
-
-Consider any set of points $N$ that are labelled by $H_2$. The same set of points may not result in the same number of dichotomies by $H_1$ as those produced by $H_2$. The reason is that $H_2$ may have hypotheses that are not present in $H_1$. This means that $H_2$ can be more expressive than $H_1$. This means that $d_{VC}(H_1) \leq d_{VC}(H_2)$.
+Consider any set of points $N$ that are labelled by $H_2$. The same set of points may not result in the same number of dichotomies by $H_1$ as those produced by $H_2$. The reason is that $H_2$ may have hypotheses that are not present in $H_1$, whereas all hypotheses in $H_1$ will be present in $H_2$. This means that $H_2$ can be more expressive than $H_1$. This means that $d_{VC}(H_1) \leq d_{VC}(H_2)$.
 
 \end{enumerate}
 %%% Local Variables:

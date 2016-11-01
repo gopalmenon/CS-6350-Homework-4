@@ -16,7 +16,7 @@
   product made out of these constitutes a distinct hypothesis. How
   large would the hypothesis space be? Brief explain your answer.
     
-Since we have $N$ available parts, the product can be made with any of the following number of parts, which would be the hypotheses space $H$.
+Since we have $N$ available parts, the product can be made with any of the following parts, which would be the hypotheses space $H$. The assumption is that we are counting a part only once to see if its been used or not.
 $$
 H = \{1, 2, 3,\ldots, N-1, N \}
 $$
@@ -40,6 +40,8 @@ $$
 \left | H \right | = \frac{2N(2N+1)}{2}
 $$
 
+The assumption is that we are interested in counting whole and broken parts separately.
+
 \item[(c)] [10 points] An experienced worker decides to train the
   naive robot to discern the makeup of a product by showing you the
   product samples he has assembled. There are 6 available parts. If
@@ -51,7 +53,7 @@ $$
 m > \frac{1}{\epsilon} \left ( log_e(\left | H \right |) + log_e \left ( \frac{1}{\delta} \right ) \right )
 $$
 
-In the case given above, since there are $2N$ different parts that can be chosen to make up the product, the input space can be thought of as having $2N$ dimensions since each dimension will be a binary variable which signifies whether a part has been used or not. So $\left | H \right | =\frac{2N(2N+1)}{2} = \frac{2\times 6(2 \times 6 +1)}{2} =\frac{12\times 13}{2} = 78$, $\epsilon=0.01$ and $\delta=1.00- 0.99=0.01$.
+In the case given above, since there are $2N$ different parts (since a robot can be made with broken and unbroken parts) that can be chosen to make up the product, the input space can be thought of as having $2N$ dimensions since each dimension will be a binary variable which signifies whether a part has been used or not. $\left | H \right | =\frac{2N(2N+1)}{2} = \frac{2\times 6(2 \times 6 +1)}{2} =\frac{12\times 13}{2} = 78$, $\epsilon=0.01$ and $\delta=1.00- 0.99=0.01$.
 
 Substituting these values into the above in-equation, we get
 
@@ -108,7 +110,7 @@ Pr \left[\exists h; err_D (h) > (1+\epsilon) err_S(h) \right ] \leq \left | H \r
 \end{aligned}
 \end{equation*}
 
-In order to minimize the generalization error, we need the above probability to be less than $\delta$. This gives us
+In order to minimize the generalization error, we need the above probability to be less than or equal to $\delta$. This gives us
 
 \begin{equation*}
 \begin{aligned}
