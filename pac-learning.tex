@@ -16,31 +16,38 @@
   product made out of these constitutes a distinct hypothesis. How
   large would the hypothesis space be? Brief explain your answer.
     
-Since we have $N$ available parts, the product can be made with any of the following parts, which would be the hypotheses space $H$. The assumption is that we are counting a part only once to see if its been used or not.
+Each product can be made up of $1$ to $N$ parts. When a product is made up of $1$ part, it can be from any of $N$ parts and so there are ${N \choose 1}$ ways of choosing the one part. Similarly, there are ${N \choose 2}$ ways of making a product by choosing from $2$ parts. So the total number of ways of making the product would be the sum of all these. Or in other words, the size of the hypothesis set $H$ would be
+
 $$
-H = \{1, 2, 3,\ldots, N-1, N \}
+\left | H \right | = \sum_{i=1}^N {N \choose i}
 $$
 
-This means that the size of the hypotheses space $H$ is 
+Another way of finding $\left|H\right|$ is to consider $N$ slots and each slot tells you whether the part corresponding to the slot number has been used or not. We have $2$ choices for each slot, so for $N$ slots, we have $2^N$ choices. However, we need to not count the case where none of the parts are used (since a product cannot be made without using a part) and so we would need to subtract $1$ from the total. That is
 
-\begin{equation*}
-\begin{aligned}
-\left | H \right | &= 1 + 2 + 3 + \ldots + N-1 + N\\
-&= \frac{N (N+1)}{2}
-\end{aligned}
-\end{equation*}
+$$
+\left | H \right | = 2^N - 1
+$$
 
 \item[(b)] [5 points] Suppose that an experienced worker follows both
   rules when making a product. How large is the hypothesis space now?
   Explain.
 
-Since each of the $N$ parts can be used as is or broken into two, we have a total of $3N$  possible parts. The reason is that we have $N$ original parts and if each part is broken into two, we have $2N$ broken parts. The total sum of the number of parts is $N + 2N$ or $3N$. The product can be made out of unbroken parts or with broken parts or a combination of both. If broken parts are used, then both halves of the broken part are to be used. This means that the total number of parts from which the product can be made, is reduced to $2N$. Based on an argument similar to the one given above for the previous answer, the size of the hypothesis space $H$ will be
+Given a set of $N$ whole parts and $N$ broken parts, considering each part, the product may be built by 
+
+\begin{enumerate}
+
+\item not choosing this part
+\item choosing this whole part 
+\item choosing only piece 1 of this part
+\item choosing only piece 2 of this part
+
+\end{enumerate}
+
+The assumption is that using both pieces of a broken part is the same as using the whole part. Similar to the above case, we can consider $N$ slots and each slot tells you whether the part corresponding to the slot number has been not used, used as a whole, only part 1 is used or only part 2 is used. As done above, we need to subtract $1$ from the total as this accounts for the case where no part is used. So
 
 $$
-\left | H \right | = \frac{2N(2N+1)}{2}
+\left | H \right | = 4^N - 1
 $$
-
-The assumption is that we are interested in counting whole and broken parts separately.
 
 \item[(c)] [10 points] An experienced worker decides to train the
   naive robot to discern the makeup of a product by showing you the
@@ -53,20 +60,20 @@ $$
 m > \frac{1}{\epsilon} \left ( log_e(\left | H \right |) + log_e \left ( \frac{1}{\delta} \right ) \right )
 $$
 
-In the case given above, since there are $2N$ different parts (since a robot can be made with broken and unbroken parts) that can be chosen to make up the product, the input space can be thought of as having $2N$ dimensions since each dimension will be a binary variable which signifies whether a part has been used or not. $\left | H \right | =\frac{2N(2N+1)}{2} = \frac{2\times 6(2 \times 6 +1)}{2} =\frac{12\times 13}{2} = 78$, $\epsilon=0.01$ and $\delta=1.00- 0.99=0.01$.
+In the case given above $\left | H \right | = 4^6 -1 = 4096-1=4095$, $\epsilon=0.01$ and $\delta=1.00- 0.99=0.01$.
 
 Substituting these values into the above in-equation, we get
 
 \begin{equation*}
 \begin{aligned}
-m &> \frac{1}{0.01} \left ( log_e(78) + log_e \left ( \frac{1}{0.01} \right ) \right )\\
-&> 100 \times \left ( log_e(78) + log_e (100) \right )\\
-&> 100 \times \left ( 4.36 + 4.60 \right )\\
-&>896.19
+m &> \frac{1}{0.01} \left ( log_e(4095) + log_e \left ( \frac{1}{0.01} \right ) \right )\\
+&> 100 \times \left ( log_e(4095) + log_e (100) \right )\\
+&> 100 \times \left ( 8.32 + 4.60 \right )\\
+&>1292
 \end{aligned}
 \end{equation*}
 
-This means that the robot will need to look at at least $897$ examples to learn a hyphothesis.
+This means that the robot will need to look at at least $1293$ examples to learn a hyphothesis.
 
 \end{itemize}
 

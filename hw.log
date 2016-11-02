@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 OCT 2016 20:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 NOV 2016 18:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1137,21 +1137,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c__siunitx_mathtt_int=\count183
 
-(./pac-learning.tex [1
+(./pac-learning.tex
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]) (.
-/vc-dimension.tex [3]
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 19.
+
+[1
+
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2]) (./vc-dimension.tex [3]
 Underfull \hbox (badness 10000) in paragraph at lines 36--37
 
  []
 
 [4]
-
-Package amsmath Warning: Foreign command \atopwithdelims;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 66.
-
-
 Overfull \hbox (13.88425pt too wide) in paragraph at lines 101--102
 []\OT1/cmr/m/n/12 Consider $4$ points. These $4$ points can be split into the d
 i-chotomies $\OMS/cmsy/m/n/12 ff\OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1/cmr/m/
@@ -1194,7 +1194,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
-) (./AdaBoost.tex [6] [7]) [8] (./hw.aux)
+[6]) (./AdaBoost.tex [7]) [8] (./hw.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1202,7 +1202,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  31517 strings out of 493089
  773409 string characters out of 6134842
- 845962 words of memory out of 5000000
+ 844962 words of memory out of 5000000
  34526 multiletter control sequences out of 15000+600000
  18668 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1223,7 +1223,7 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on hw.pdf (8 pages, 176888 bytes).
+Output written on hw.pdf (8 pages, 176845 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream
