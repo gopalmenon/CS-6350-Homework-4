@@ -22,7 +22,7 @@ $$
 \left | H \right | = \sum_{i=1}^N {N \choose i}
 $$
 
-Another way of finding $\left|H\right|$ is to consider $N$ slots and each slot tells you whether the part corresponding to the slot number has been used or not. We have $2$ choices for each slot, so for $N$ slots, we have $2^N$ choices. However, we need to not count the case where none of the parts are used (since a product cannot be made without using a part) and so we would need to subtract $1$ from the total. That is
+Another way of finding $\left|H\right|$ is to consider $N$ slots and each slot tells you whether the part corresponding to the slot number has been used or not. We have $2$ choices for each slot (whether to use the part or not), so for $N$ slots, we have $2^N$ choices. However, we need to not count the case where none of the parts are used (since a product cannot be made without using a part) and so we would need to subtract $1$ from the total. That is
 
 $$
 \left | H \right | = 2^N - 1
@@ -55,7 +55,7 @@ $$
   the robot would like to learn any product at $0.01$ error with
   probability $99\%$, how many examples would the robot have to see?
   
-In order to learn a hypothesis with $n$ dimensional features, with an error less than $\epsilon$, with a probability of $1-\delta$, we would need $m$ training samples, where $m$ is given by
+In order to learn a hypothesis with an error less than $\epsilon$, with a probability of $1-\delta$, we would need $m$ training samples, where $m$ is given by
 $$  
 m > \frac{1}{\epsilon} \left ( \ln(\left | H \right |) + \ln \left ( \frac{1}{\delta} \right ) \right )
 $$
@@ -151,7 +151,8 @@ In order to minimize the generalization error, we need the above probability to 
 \ln(\left | H \right | ) - \frac{mp}{2} \frac{\epsilon^2}{(1+\epsilon)^2}&\leq \ln(\delta)\\
 \frac{mp}{2} \frac{\epsilon^2}{(1+\epsilon)^2} &\geq \ln(\left | H \right | ) + \ln\left(\frac{1}{\delta}\right)\\
 m &\geq \frac{2}{p} \left(\frac{1+\epsilon}{\epsilon}\right)^2 \left(\ln(\left | H \right | ) + \ln \left ( \frac{1}{\delta} \right )\right)\\
-m &\geq \frac{2}{p} \left(1+\frac{1}{\epsilon}\right)^2 \left(\ln(\left | H \right | ) + \ln \left ( \frac{1}{\delta} \right )\right)
+m &\geq \frac{2}{p} \left(1+\frac{1}{\epsilon}\right)^2 \left(\ln(\left | H \right | ) + \ln \left ( \frac{1}{\delta} \right )\right)\\
+m &\geq \frac{2}{Err_D(h)} \left(1+\frac{1}{\epsilon}\right)^2 \left(\ln(\left | H \right | ) + \ln \left ( \frac{1}{\delta} \right )\right)
 \end{aligned}
 \end{equation*}
 
