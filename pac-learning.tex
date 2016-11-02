@@ -57,7 +57,7 @@ $$
   
 In order to learn a hypothesis with $n$ dimensional features, with an error less than $\epsilon$, with a probability of $1-\delta$, we would need $m$ training samples, where $m$ is given by
 $$  
-m > \frac{1}{\epsilon} \left ( log_e(\left | H \right |) + log_e \left ( \frac{1}{\delta} \right ) \right )
+m > \frac{1}{\epsilon} \left ( \ln(\left | H \right |) + \ln \left ( \frac{1}{\delta} \right ) \right )
 $$
 
 In the case given above $\left | H \right | = 4^6 -1 = 4096-1=4095$, $\epsilon=0.01$ and $\delta=1.00- 0.99=0.01$.
@@ -66,8 +66,8 @@ Substituting these values into the above in-equation, we get
 
 \begin{equation*}
 \begin{aligned}
-m &> \frac{1}{0.01} \left ( log_e(4095) + log_e \left ( \frac{1}{0.01} \right ) \right )\\
-&> 100 \times \left ( log_e(4095) + log_e (100) \right )\\
+m &> \frac{1}{0.01} \left ( \ln(4095) + \ln \left ( \frac{1}{0.01} \right ) \right )\\
+&> 100 \times \left ( \ln(4095) + \ln (100) \right )\\
 &> 100 \times \left ( 8.32 + 4.60 \right )\\
 &>1292
 \end{aligned}
@@ -91,7 +91,7 @@ sufficient to ensure that every hypothesis will have true error no
 worse than $(1+\epsilon)error_S(h)$, where $0 \leq \epsilon \leq 1$. You can use general Chernoff bounds
 to derive such a result.
 
-{\bf Chernoff bounds:} Suppose $X_1, \cdots, X_m$ are the outcomes of $m$ independent coin flips (Bernoulli trials), where the probability of heads on any single trail is $Pr[X_i = 1] = p$ and the probability of tails is $Pr[X_i = 0] = 1 - p$. Define $S = X_1 + X_2 + \cdots + X_m$ to be the sum of these $m$ trials. The expected value of $S/m$ is $E[S/m] = p$. The Chernoff bounds govern the probabilty that $S/m$ will differ from $p$ by some factor $0 \leq \gamma \leq 1$.
+{\bf Chernoff bounds:} Suppose $X_1, \cdots, X_m$ are the outcomes of $m$ independent coin flips (Bernoulli trials), where the probability of heads on any single trial is $Pr[X_i = 1] = p$ and the probability of tails is $Pr[X_i = 0] = 1 - p$. Define $S = X_1 + X_2 + \cdots + X_m$ to be the sum of these $m$ trials. The expected value of $S/m$ is $E[S/m] = p$. The Chernoff bounds govern the probabilty that $S/m$ will differ from $p$ by some factor $0 \leq \gamma \leq 1$.
 
 \begin{equation}
     \begin{array}{rcl}
@@ -102,18 +102,44 @@ to derive such a result.
 
 The empirical error is defined as $err_S(h) = \frac{\left | \left \{ f(x) \neq h(x) \right \} \right |}{m}$ and the generalization error is defined as $err_D(h) =  Pr \left [ f(x) \neq h(x) \right ]$, where $S$ is the training set, $h$ is the hypothesis that is learnt, $f(x)$ is the unknown true function, $m$ is the number of training samples and $D$ is the distribution from which samples are drawn.
 
-Using the Chernoff bounds, we can find the expression for the probability that the expected error (or in other words the generalization error) for a single hypothesis will differ from the empirical error by some factor based on $\epsilon$, where $0 \leq \epsilon \leq 1$. This expression will be
+In the Chernoff bound, $\frac{S}{m}$ is equivalent to the empirical error $err_S(h)$ and $p$ is equivalent to the generalization error $err_D(h)$. Using these equivalent values in the second Chernoff bound, we get the relationship between the empirical error and the generalization error for a single hypothesis
 
 \begin{equation*}
 \begin{aligned}
-Pr \left[ err_D (h) > (1+\epsilon) err_S(h) \right ] \leq e^{\frac{-mp\epsilon^2}{3}}
+Pr \left[Err_S(h) < (1 - \gamma)Err_D(h)\right] \leq e^{\frac{-mp\gamma^2}{2}}
 \end{aligned}
 \end{equation*}
 
-For the case where the hypothesis $h$ is chosen from the set of all possible hypotheses $H$, the learning algorithm will choose the hypothesis that has minimum empirical error. Using the union bound, we can say that the probability that there exists hypothesis $h \in H$, such that the expected error will differ from the empirical error, will be
+For the case where the hypothesis $h$ is chosen from the set of all possible hypotheses $H$, the learning algorithm will choose the hypothesis that has minimum empirical error. Using the union bound, we can say that the probability that there exists hypothesis $h \in H$, such that the empirical error will be less than the generalization error by a factor of $1-\gamma$, will be
+
 \begin{equation*}
 \begin{aligned}
-Pr \left[\exists h; err_D (h) > (1+\epsilon) err_S(h) \right ] \leq \left | H \right | e^{\frac{-mp\epsilon^2}{3}}
+Pr \left[\exists h; Err_S(h) < (1-\gamma)Err_D(h)\right] \leq \left | H \right | e^{\frac{-mp\gamma^2}{2}}
+\end{aligned}
+\end{equation*}
+
+if we set the value of $\frac{1}{1-\gamma}$ to be $1+\epsilon$ with the condition that $0 \leq \epsilon \leq 1$, we get
+
+\begin{equation*}
+\begin{aligned}
+\frac{1}{1-\gamma} &= 1+ \epsilon\\
+\implies \frac{1}{1+\epsilon} &= 1- \gamma\\
+\implies \gamma &= 1-\frac{1}{1+\epsilon} \\
+&= \frac{1+\epsilon -1}{1+\epsilon}\\
+&= \frac{\epsilon}{1+\epsilon}
+\end{aligned}
+\end{equation*}
+
+
+We can than rewrite the above probability relation as 
+
+\begin{equation*}
+\begin{aligned}
+Pr \left[\exists h; (1-\gamma)Err_D(h) > Err_S(h) \right] &\leq \left | H \right | e^{\frac{-mp\gamma^2}{2}}\\
+Pr \left[\exists h; \frac{1}{1+\epsilon} Err_D(h) > Err_S(h) \right] &\leq \left | H \right | e^{\frac{-mp\gamma^2}{2}}\\
+Pr \left[\exists h; Err_D(h) > (1+\epsilon)Err_S(h) \right] &\leq \left | H \right | e^{\frac{-mp\gamma^2}{2}}\\
+&\leq \left | H \right | e^{\frac{-mp(\frac{\epsilon}{1+\epsilon})^2}{2}}\\
+&\leq \left | H \right | e^ {\frac{-mp}{2} \frac{\epsilon^2}{(1+\epsilon)^2}}
 \end{aligned}
 \end{equation*}
 
@@ -121,10 +147,11 @@ In order to minimize the generalization error, we need the above probability to 
 
 \begin{equation*}
 \begin{aligned}
-\left | H \right | e^{\frac{-mp\epsilon^2}{3}} &\leq \delta\\
-log_e \left ( \left | H \right | \right ) - \frac{mp\epsilon^2}{3} log_e e &\leq log_e \left (\delta \right)\\
-\frac{mp\epsilon^2}{3} &\geq log_e \left ( \left | H \right | \right ) - log_e \left (\delta \right)\\
-m &\geq \frac{3}{p\epsilon^2} \left ( log_e \left ( \left | H \right | \right ) + log_e \left (\frac{1}{\delta} \right) \right )
+\left | H \right | e^ {\frac{-mp}{2} \frac{\epsilon^2}{(1+\epsilon)^2}} &\leq \delta\\
+\ln(\left | H \right | ) - \frac{mp}{2} \frac{\epsilon^2}{(1+\epsilon)^2}&\leq \ln(\delta)\\
+\frac{mp}{2} \frac{\epsilon^2}{(1+\epsilon)^2} &\geq \ln(\left | H \right | ) + \ln\left(\frac{1}{\delta}\right)\\
+m &\geq \frac{2}{p} \left(\frac{1+\epsilon}{\epsilon}\right)^2 \left(\ln(\left | H \right | ) + \ln \left ( \frac{1}{\delta} \right )\right)\\
+m &\geq \frac{2}{p} \left(1+\frac{1}{\epsilon}\right)^2 \left(\ln(\left | H \right | ) + \ln \left ( \frac{1}{\delta} \right )\right)
 \end{aligned}
 \end{equation*}
 

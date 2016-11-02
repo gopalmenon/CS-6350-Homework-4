@@ -31,51 +31,18 @@ This means that the VC dimension at most $\log_2|\mathcal{C}|$
   \item
     $\mathcal{H}_{=k}^{\mathcal{X}} = \{h \in \{0,1\}^\mathcal{X} :
     |\{x : h(x) = 1\} | = k \}$. That is , the set of all functions that
-    assign the value 1 to exactly $k$ elements of $\mathcal{X}$.
+    assign the value 1 to exactly $k$ elements of $\mathcal{X}$.\\
 
 $d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{H}$, is defined as the largest $N$ for which $m_{\mathcal{H}}(N) = 2^N$. The definition of $m_{\mathcal{H}} $ is similar to the one given above.\\
 
-For the case of maximum number of dichotomies, we can consider that each hypothesis in $\mathcal{H}$ creates a distinct dichotomy. To find $d_{VC}(\mathcal{H})$ corresponding to this case, since we know that at exactly $k$ elements are assigned a label $1$ and the remaining elements are assigned label $0$, for the case of the VC dimension, the maximum number of dichotomies must be a power of $2$. Consider a subset of elements of $\mathcal{X}$, where $k$ elements are assigned label $1$ and $y$ elements are assigned label $0$.
-
-\begin{equation*}
-\begin{aligned}
-\left | \mathcal{H} \right | &= 2^{k + y}\\
-\log_2 \left | \mathcal{H} \right | &= k+y\\
-y &= \log_2 \left | \mathcal{H} \right | - k\\
-\end{aligned}
-\end{equation*}
-
-Since $d_{VC}(\mathcal{H})$, the VC dimension of the hypothesis class $\mathcal{H}$, is defined as the largest $N$ for which $m_{\mathcal{H}}(N) = 2^N$
-
-\begin{equation*}
-\begin{aligned}
-2^{d_{VC}(\mathcal{H})} &= 2^{k+y}\\
-&= 2^{k+\log_2 \left | \mathcal{H} \right | - k}\\
-&= 2^{log_2 \left | \mathcal{H} \right |}\\
-\implies d_{VC}(\mathcal{H}) &= \log_2 \left | \mathcal{H} \right |
-\end{aligned}
-\end{equation*}
+If we choose $N$ to be $2$, and if we choose $k$ to be $0$, $1$ or $2$, then all possible dichotomies cannot be generated. So VC dimension has to be less than $2$. A similar argument shows that VC dimension has to be less than $1$, since all possible dichotomies cannot be generated for this case. So the VC dimension is $0$.
 
   \item  $\mathcal{H}_{\leq k}^{\mathcal{X}} = \{h \in
     \{0,1\}^\mathcal{X} : |\{x : h(x) = 1\} | \leq k \quad or \quad |\{x
       : h(x) = 0\} | \leq k\}$. That is , the set of all functions that
     assign the value 1 or 0 to at most $k$ elements of $\mathcal{X}$.
 
-For the case of a set of $d_{VC}(\mathcal{H})$ elements in $\mathcal{X}$, the label will be $1$ for between $0$ and $k$ elements. If this happens, there will be correspondingly between $k$ and $0$ elements with label $0$. So the total number of dichotomies will be
-$$
-\sum_{i=0}^k {N \choose i}
-$$
-where N is the number of elements chosen from $\mathcal{X}$.
-
-Let $d_{VC}(\mathcal{H}) = y$. This means that
-
-\begin{equation*}
-\begin{aligned}
-2^y &= \sum_{i=0}^k {N \choose i}\\
-\implies d_{VC}(\mathcal{H}) &= y\\
- &= \log_2 \sum_{i=0}^k {N \choose i}
-\end{aligned}
-\end{equation*}
+Since the value of $1$ is assigned to at most $k$ elements, then VC dimension can be $k$. The reason is that if we choose $k$ elements from $\mathcal{X}$, if we assume that the functions in the hypothesis class will assign a value of $1$ to all elements between $0$ and $k$, then this will cover all dichotomies (or in other words all possible binary values) if we consider the $k$ elements to be the bits in a $k$-bit binary number. 
 
   \end{enumerate}
 
@@ -131,7 +98,7 @@ So $d_{VC}(\mathcal{H}) = 4$.
 
   What is the VC dimension of this class?
 
-The concept class contains individual hypothesis' that consist on two arms that can intersect anywhere on $\Re^2$ and can cover an infinite arc from any angle from $0\si{\degree}$ to $360\si{\degree}$. Consider the case of three collinear points which have labels $\{+1, -1, +1\}$. This classification clearly cannot be satisfied by any of the hypothesis in the hypothesis class. Any two points ($2^1$ points) with any distribution of $+1$ and $-1$ can be covered.\\
+The concept class contains individual hypothesis functions that consist of two arms that can intersect anywhere on $\Re^2$ and can cover an infinite arc from any angle from $0\si{\degree}$ to $360\si{\degree}$. Consider the case of three collinear points which have labels $\{+1, -1, +1\}$. This classification clearly cannot be satisfied by any of the hypothesis in the hypothesis class. Any two points ($2^1$ points) with any distribution of $+1$ and $-1$ can be covered.\\
 
 So $d_{VC}(H) = 1$.
 
@@ -139,7 +106,7 @@ So $d_{VC}(H) = 1$.
   $H_1$ and $H_2$ satisfy $H_1 \subseteq H_2$. Prove: $VC(H_1) \leq
   VC(H_2)$.
 
-Consider any set of points $N$ that are labelled by $H_2$. The same set of points may not result in the same number of dichotomies by $H_1$ as those produced by $H_2$. The reason is that $H_2$ may have hypotheses that are not present in $H_1$, whereas all hypotheses in $H_1$ will be present in $H_2$. This means that $H_2$ can be more expressive than $H_1$. This means that $d_{VC}(H_1) \leq d_{VC}(H_2)$.
+Consider any set of points $N$ that are labelled by $H_2$. The same set of points may not result in the same number of dichotomies by $H_1$ as those produced by $H_2$. The reason is that $H_2$ may have hypotheses that are not present in $H_1$, whereas all hypotheses in $H_1$ will be present in $H_2$. This means that $H_2$ can be more expressive than $H_1$ and can shatter more points. This means that $d_{VC}(H_1) \leq d_{VC}(H_2)$.
 
 \end{enumerate}
 %%% Local Variables:
